@@ -1,76 +1,25 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-Number: <input type="number" id="myNumber" >
-Money: <input type="number" id="money" >
-<label for="cars">Chanel</label>
-  <select name="chanel" id="chanel">
+<label for="dai">Chọn Đài</label>
+  <select name="dai" id="dai">
     <option value="nam" selected>Nam</option>
-    <option value="bac">Bắc</option>
-  
+    <option value="bac">Bắc</option>  
   </select>
-<button onclick="myFunction()">Try it</button>
-<p >Số: <span id="so"></span>  <span id="trung" style="color: red"></span></p>
-<p>Tiền Khách Ghi: <span id="tien" style="color: red"></span></p>
-<p>Loại: <span id="chan" style="color: red"></span></p>
-<p>Đài: <span id="tendai" style="color: red"></span></p>
-<p>Số tiền chung cho khách: <span id="chung" style="color: red"></span></p>
+  
+  <label for="chan">Chọn chân</label>
+  <select name="chan" id="chan">
+    <option value="2" selected>Hai chân</option>
+    <option value="3">Ba chân</option>  
+  </select><br><br>
+Nhập số nhà đài:<br>
+<textarea id="soNhaDai" rows="5" style="width: 100%" placeholder="Nhập số vào đây, cách nhau bằng dấu phẩy"></textarea><br><br>
+Số khách ghi:<br>
+<textarea id="soKhachGhi" rows="5" style="width: 100%" placeholder="Nhập số vào đây, cách nhau bằng dấu phẩy"></textarea>
+<button onclick="myFunction()">Kiểm tra</button>
+<h4 style="color: red">Kết quả</h4><br>
 
 <script>
-
-
-
-let dai = [12, 14];
-function myFunction() {
-let chanel = document.getElementById("chanel").value;
-let so = parseInt(document.getElementById("myNumber").value);
-document.getElementById("so").innerHTML = so;
-let trung = dai.includes(so);
-let kqua = "Không trúng";
-
-
-document.getElementById("tendai").innerHTML = chanel;
-  
-  let tien = document.getElementById("money").value;
- let thuong = 0;
- let length = so.toString().length;
-let chan = "";
-if(length == 2){
-chan = "2 chân"
- }
- if(length == 3){
-chan = "3 chân"
- }
- document.getElementById("chan").innerHTML = chan;
-  document.getElementById("tien").innerHTML = tien;
-   if(trung){
-   kqua = "Trúng";
-  	if(length == 2){
-      if(chanel == "nam"){
-          thuong = tien * 18;
-      }
-       if(chanel == "bac"){
-      thuong = tien * 27;
-      }
-    }
-    if(length == 3){
-      if(chanel == "nam"){
-          thuong = tien * 17;
-      }
-       if(chanel == "bac"){
-      thuong = tien * 23;
-      }
-    }
-  }
-  document.getElementById("trung").innerHTML = kqua;
-  document.getElementById("chung").innerHTML = thuong;
-}
-
-
-
-
-
 </script>
 
 </body>
