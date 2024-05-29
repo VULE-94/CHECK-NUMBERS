@@ -1,6 +1,77 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1 style="color: coral; text-align: center;">Hello TẤN VŨ</h1>
+
+Number: <input type="number" id="myNumber" >
+Money: <input type="number" id="money" >
+<label for="cars">Chanel</label>
+  <select name="chanel" id="chanel">
+    <option value="nam" selected>Nam</option>
+    <option value="bac">Bắc</option>
+  
+  </select>
+<button onclick="myFunction()">Try it</button>
+<p >Số: <span id="so"></span>  <span id="trung" style="color: red"></span></p>
+<p>Tiền Khách Ghi: <span id="tien" style="color: red"></span></p>
+<p>Loại: <span id="chan" style="color: red"></span></p>
+<p>Đài: <span id="tendai" style="color: red"></span></p>
+<p>Số tiền chung cho khách: <span id="chung" style="color: red"></span></p>
+
+<script>
+
+
+
+let dai = [12, 14];
+function myFunction() {
+let chanel = document.getElementById("chanel").value;
+let so = parseInt(document.getElementById("myNumber").value);
+document.getElementById("so").innerHTML = so;
+let trung = dai.includes(so);
+let kqua = "Không trúng";
+
+
+document.getElementById("tendai").innerHTML = chanel;
+  
+  let tien = document.getElementById("money").value;
+ let thuong = 0;
+ let length = so.toString().length;
+let chan = "";
+if(length == 2){
+chan = "2 chân"
+ }
+ if(length == 3){
+chan = "3 chân"
+ }
+ document.getElementById("chan").innerHTML = chan;
+  document.getElementById("tien").innerHTML = tien;
+   if(trung){
+   kqua = "Trúng";
+  	if(length == 2){
+      if(chanel == "nam"){
+          thuong = tien * 18;
+      }
+       if(chanel == "bac"){
+      thuong = tien * 27;
+      }
+    }
+    if(length == 3){
+      if(chanel == "nam"){
+          thuong = tien * 17;
+      }
+       if(chanel == "bac"){
+      thuong = tien * 23;
+      }
+    }
+  }
+  document.getElementById("trung").innerHTML = kqua;
+  document.getElementById("chung").innerHTML = thuong;
+}
+
+
+
+
+
+</script>
+
 </body>
 </html>
