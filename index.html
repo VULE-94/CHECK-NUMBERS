@@ -1,26 +1,95 @@
 <!DOCTYPE html>
 <html>
-<body>
-<label for="dai">Chọn Đài</label>
-  <select name="dai" id="dai">
-    <option value="nam" selected>Nam</option>
-    <option value="bac">Bắc</option>  
-  </select>
-  
-  <label for="chan">Chọn chân</label>
-  <select name="chan" id="chan">
-    <option value="2" selected>Hai chân</option>
-    <option value="3">Ba chân</option>  
-  </select><br><br>
-Nhập số nhà đài:<br>
-<textarea id="soNhaDai" rows="5" style="width: 100%" placeholder="Nhập số vào đây, cách nhau bằng dấu phẩy"></textarea><br><br>
-Số khách ghi:<br>
-<textarea id="soKhachGhi" rows="5" style="width: 100%" placeholder="Nhập số vào đây, cách nhau bằng dấu phẩy"></textarea>
-<button onclick="myFunction()">Kiểm tra</button>
-<h4 style="color: red">Kết quả</h4><br>
 
-<script>
-</script>
+<body>
+    <div style="display: flex;">
+        <div style="width: 20%; font-weight: bold;">
+            Số Lô
+        </div>
+        <div style="width: 20%; font-weight: bold;">
+            Số Tiền
+        </div>
+        <div style="width: 20%; font-weight: bold;">
+            Số Lần
+        </div>
+        <div style="width: 20%; font-weight: bold;">
+            Kết quả
+        </div>
+        <div><span style="color: red; font-weight: bold;">Tổng: </span><span id="tong"></span></div>
+        
+    </div>
+    
+    <script>
+        // Tạo 100 phần tử
+        for (let i = 1; i <= 100; i++) {
+            const pageDiv = document.createElement('div');
+            pageDiv.id = `page-${i}`;
+            pageDiv.style.display = 'flex';
+
+            const soLoDiv = document.createElement('div');
+            soLoDiv.style.width = '20%';
+            soLoDiv.innerHTML = `        
+        <div>
+            <input style="width:100%" name="soLo-${i}" id="soLo-${i}" type="number" value="0" onchange="countOneRow('soLo-${i}', 'soTien-${i}', 'soLan-${i}', 'ketQua-${i}')">
+        </div>
+    `;
+
+            const soTienDiv = document.createElement('div');
+            soTienDiv.style.width = '20%';
+            soTienDiv.innerHTML = `       
+        <div>
+            <input style="width:100%" name="soTien-${i}" id="soTien-${i}" type="number" value="0" onchange="countOneRow('soLo-${i}', 'soTien-${i}', 'soLan-${i}', 'ketQua-${i}')">
+        </div>
+    `;
+
+            const soLanDiv = document.createElement('div');
+            soLanDiv.style.width = '20%';
+            soLanDiv.innerHTML = `       
+        <div>
+            <input style="width:100%" name="soLan-${i}" id="soLan-${i}" type="number" value="1" onchange="countOneRow('soLo-${i}', 'soTien-${i}', 'soLan-${i}', 'ketQua-${i}')">
+        </div>
+    `;
+
+            const ketQuaDiv = document.createElement('div');
+            ketQuaDiv.style.width = '20%';
+            ketQuaDiv.innerHTML = `       
+        <div>
+            <input style="width:100%" name="ketQua-${i}" id="ketQua-${i}" type="number" onchange="countTotal()" value="0">
+        </div>
+    `;
+
+            pageDiv.appendChild(soLoDiv);
+            pageDiv.appendChild(soTienDiv);
+            pageDiv.appendChild(soLanDiv);
+            pageDiv.appendChild(ketQuaDiv);
+
+            document.body.appendChild(pageDiv);
+        }
+
+        function countOneRow(soLoId, soTienId, soLanId, ketQuaId) {
+            // Lấy giá trị từ các input
+            const soLo = parseFloat(document.getElementById(soLoId).value);
+            const soTien = parseFloat(document.getElementById(soTienId).value);
+            const soLan = parseFloat(document.getElementById(soLanId).value);
+
+            // Tính kết quả
+            const ketQua = soLo * soTien * soLan;
+
+            // Gán kết quả vào input tương ứng
+            document.getElementById(ketQuaId).value = ketQua;
+            countTotal();
+        }
+        
+        function countTotal() {
+            let total = 0;
+            for (let i = 1; i <= 100; i++) {
+                const ketQua = parseFloat(document.getElementById(`ketQua-${i}`).value);
+                total += ketQua;
+            }
+            document.getElementById("tong").innerHTML = total;
+        }
+    </script>
 
 </body>
+
 </html>
